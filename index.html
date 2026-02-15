@@ -101,7 +101,7 @@
       box-shadow:0 14px 40px rgba(201,163,91,.25);
     }
 
-    /* Hero (split luxury: dark hero) */
+    /* Hero */
     .hero{
       background: radial-gradient(900px 520px at 70% 10%, rgba(201,163,91,.18), transparent 60%),
                   linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
@@ -221,6 +221,24 @@
     }
     .featured > *{position:relative}
 
+    /* Bookings list (requested) */
+    .booking-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:18px;
+    }
+    .booking-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:16px 16px;
+      box-shadow: var(--shadow);
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .booking-item b{display:block; font-size:14px; margin-top:1px;}
+    .booking-item span{display:block; color:var(--muted); font-size:13px; line-height:1.7;}
+
     .grid-2{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -237,7 +255,32 @@
     .tile b{display:block; font-size:14px}
     .tile span{display:block; color:var(--muted); font-size:13px; line-height:1.7}
 
-    /* Enquiries section (dark footer style) */
+    /* NEW: White image slide with fade */
+    .image-slide{
+      background:#ffffff;
+    }
+    .image-frame{
+      border:1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background:#fff;
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity 900ms ease, transform 900ms ease;
+      will-change: opacity, transform;
+    }
+    .image-frame.is-visible{
+      opacity:1;
+      transform: translateY(0);
+    }
+    .image-frame img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* Enquiries */
     .enquiries{
       background: linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
       color:var(--white);
@@ -309,14 +352,14 @@
       .hero-grid{grid-template-columns:1fr}
       .cards{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
+      .booking-grid{grid-template-columns:1fr}
       nav{display:none}
     }
   </style>
 </head>
 
 <body>
-  <!-- One-click WhatsApp link with prefilled message -->
-  <!-- NOTE: SA number: 067... becomes 2767... (remove the 0 and add 27) -->
+  <!-- One-click WhatsApp -->
   <a class="wa-fab"
      href="https://wa.me/27679741325?text=Hi%20Spark%20Projects%2C%20I%20need%20assistance%20with%20a%20venue%20booking.%20Please%20share%20availability%20and%20requirements."
      target="_blank" rel="noopener">
@@ -336,6 +379,8 @@
 
       <nav aria-label="Primary">
         <a href="#what-we-do">What We Do</a>
+        <a href="#bookings">Bookings</a>
+        <a href="#activation">Activation</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#coverage">Coverage</a>
         <a href="#about">About</a>
@@ -440,6 +485,36 @@
       </div>
     </section>
 
+    <section id="bookings">
+      <div class="container">
+        <h2 class="section-title">Types of Bookings We Support</h2>
+        <p class="section-sub">
+          We assist with venue bookings and activation spaces for a range of events and campaigns.
+        </p>
+
+        <div class="booking-grid">
+          <div class="booking-item"><div class="dot"></div><div><b>Mall activations & pop-up store activations</b><span>Short-term spaces that support foot traffic and brand visibility.</span></div></div>
+          <div class="booking-item"><div class="dot"></div><div><b>Pop-up spaces & short-term leasing (where applicable)</b><span>Support with sourcing and booking suitable temporary spaces.</span></div></div>
+          <div class="booking-item"><div class="dot"></div><div><b>Conferences & corporate events</b><span>Meeting venues, conference rooms, and professional event spaces.</span></div></div>
+          <div class="booking-item"><div class="dot"></div><div><b>Product launches</b><span>Venues suited for brand moments, guests, and media-ready setups.</span></div></div>
+          <div class="booking-item"><div class="dot"></div><div><b>Expos & exhibitions</b><span>Exhibition venues and spaces aligned to your event objectives.</span></div></div>
+          <div class="booking-item"><div class="dot"></div><div><b>Private gatherings & brand experiences</b><span>Spaces for intimate events, celebrations, and curated experiences.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: White background activation image slide (fade in) -->
+    <section class="image-slide" id="activation">
+      <div class="container">
+        <h2 class="section-title">Activation</h2>
+        <p class="section-sub">A look at activation-style setups and brand-facing spaces.</p>
+
+        <div class="image-frame" id="activationFrame">
+          <img src="activation.jpg" alt="Activation setup">
+        </div>
+      </div>
+    </section>
+
     <section id="how-it-works">
       <div class="container">
         <h2 class="section-title">How It Works</h2>
@@ -503,6 +578,23 @@
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Fade-in for activation image slide
+    (function(){
+      var frame = document.getElementById("activationFrame");
+      if(!frame) return;
+
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            frame.classList.add("is-visible");
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.18 });
+
+      obs.observe(frame);
+    })();
   </script>
 </body>
 </html>
