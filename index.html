@@ -1,508 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spark Projects | Venue Bookings & Event Space Solutions</title>
-  <meta name="description" content="Spark Projects secures venues and activation spaces across South Africa. Professional coordination, clear communication, and optional equipment & supplier support." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spark Projects | Venue Bookings & Event Solutions</title>
 
-  <!-- Premium fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
 
-  <!-- Simple favicon (uses your logo file) -->
-  <link rel="icon" type="image/png" href="logo.png">
+body{
+margin:0;
+font-family: Arial, Helvetica, sans-serif;
+background:#f5f5f5;
+color:#222;
+}
 
-  <style>
-    :root{
-      --bg-dark:#0f1014;
-      --bg-dark-2:#12131a;
-      --bg-light:#fafafa;
-      --text:#121317;
-      --muted:#5b5f6b;
-      --white:#ffffff;
-      --gold:#c9a35b;
-      --line:rgba(17,19,26,.10);
-      --line-dark:rgba(255,255,255,.10);
-      --shadow:0 18px 55px rgba(0,0,0,.12);
-      --radius:18px;
-      --max:1120px;
-    }
+/* HERO SECTION */
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
-      background:var(--bg-light);
-    }
-    a{color:inherit; text-decoration:none}
-    .container{width:min(var(--max), 92%); margin-inline:auto}
+.hero{
+height:100vh;
+background:url("hero.jpg") center/cover no-repeat;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
 
-    /* Header */
-    header{
-      position:sticky; top:0; z-index:50;
-      background:rgba(250,250,250,.85);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--line);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px 0;
-      gap:12px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px; min-width: 220px;
-    }
-    .brand img{
-      width:44px; height:44px; border-radius:12px;
-      border:1px solid var(--line);
-      background:#fff;
-      object-fit:contain;
-      box-shadow:0 10px 35px rgba(0,0,0,.06);
-    }
-    .brand .name{
-      font-weight:700;
-      letter-spacing:.6px;
-      font-size:14px;
-      line-height:1.1;
-    }
-    .brand .tag{
-      color:var(--muted);
-      font-size:12px;
-      margin-top:3px;
-      letter-spacing:.4px;
-    }
-    nav{
-      display:flex; gap:18px; align-items:center;
-      color:#2a2d35; font-size:14px;
-    }
-    nav a{opacity:.85}
-    nav a:hover{opacity:1}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:var(--white);
-      font-weight:600;
-      font-size:14px;
-      box-shadow:0 10px 30px rgba(0,0,0,.06);
-      transition: transform .12s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btn-gold{
-      border:none;
-      background:linear-gradient(180deg, var(--gold), #a98243);
-      color:#0f1014;
-      box-shadow:0 14px 40px rgba(201,163,91,.25);
-    }
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.65);
+}
 
-    /* Hero (split luxury: dark hero) */
-    .hero{
-      background: radial-gradient(900px 520px at 70% 10%, rgba(201,163,91,.18), transparent 60%),
-                  linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
-      color:var(--white);
-      border-bottom:1px solid var(--line-dark);
-    }
-    .hero-wrap{padding:68px 0 44px}
-    .kicker{
-      display:inline-block;
-      color:rgba(201,163,91,.95);
-      letter-spacing:2px;
-      text-transform:uppercase;
-      font-size:12px;
-      margin-bottom:14px;
-    }
-    h1{
-      font-family:"Playfair Display", serif;
-      font-size:clamp(38px, 4.8vw, 60px);
-      line-height:1.05;
-      margin:0 0 14px;
-      letter-spacing:.2px;
-    }
-    .lead{
-      color:rgba(255,255,255,.78);
-      font-size:16px;
-      line-height:1.75;
-      max-width:70ch;
-      margin:0 0 22px;
-    }
-    .hero-actions{display:flex; gap:12px; flex-wrap:wrap}
-    .btn-ghost-dark{
-      border:1px solid var(--line-dark);
-      background:transparent;
-      color:var(--white);
-      box-shadow:none;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      align-items:stretch;
-      margin-top:26px;
-    }
-    .trust-card{
-      border:1px solid var(--line-dark);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--radius);
-      padding:18px;
-    }
-    .trust-card h3{
-      margin:0 0 10px;
-      font-size:14px;
-      letter-spacing:.6px;
-      color:rgba(255,255,255,.92);
-      font-weight:700;
-      text-transform:uppercase;
-    }
-    .pill{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.20);
-      margin-top:10px;
-    }
-    .dot{
-      width:10px; height:10px; margin-top:5px;
-      border-radius:999px;
-      background:var(--gold);
-      box-shadow:0 0 0 4px rgba(201,163,91,.18);
-      flex:0 0 auto;
-    }
-    .pill b{display:block; font-size:14px}
-    .pill span{display:block; color:rgba(255,255,255,.72); font-size:13px; line-height:1.6}
+.hero-content{
+position:relative;
+z-index:2;
+padding:20px;
+}
 
-    /* Sections */
-    section{padding:54px 0}
-    .section-title{
-      font-family:"Playfair Display", serif;
-      font-size:30px;
-      margin:0 0 10px;
-    }
-    .section-sub{
-      margin:0 0 22px;
-      color:var(--muted);
-      line-height:1.75;
-      max-width:80ch;
-    }
-    .cards{
-      display:grid;
-      grid-template-columns: 1.25fr 1fr 1fr;
-      gap:14px;
-      align-items:stretch;
-    }
-    .card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:18px;
-      box-shadow: var(--shadow);
-    }
-    .card h3{margin:0 0 10px; font-size:16px}
-    .card p{margin:0; color:var(--muted); line-height:1.7; font-size:14px}
-    .card ul{margin:12px 0 0; padding:0; list-style:none; color:var(--muted); font-size:14px; line-height:1.7}
-    .card ul li{margin:6px 0}
-    .featured{
-      border:1px solid rgba(201,163,91,.35);
-      position:relative;
-      overflow:hidden;
-    }
-    .featured:before{
-      content:"";
-      position:absolute; inset:-120px -140px auto auto;
-      width:320px; height:320px;
-      background: radial-gradient(circle, rgba(201,163,91,.20), transparent 60%);
-      transform: rotate(25deg);
-    }
-    .featured > *{position:relative}
+.logo{
+width:140px;
+margin-bottom:20px;
+}
 
-    .grid-2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
-    .tile{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:16px 16px;
-      box-shadow: var(--shadow);
-      display:flex; gap:10px; align-items:flex-start;
-    }
-    .tile b{display:block; font-size:14px}
-    .tile span{display:block; color:var(--muted); font-size:13px; line-height:1.7}
+.hero h1{
+font-size:52px;
+letter-spacing:3px;
+margin:10px 0;
+}
 
-    /* Enquiries section (dark footer style) */
-    .enquiries{
-      background: linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
-      color:var(--white);
-      border-top:1px solid var(--line-dark);
-    }
-    .enq-box{
-      border:1px solid var(--line-dark);
-      background: rgba(255,255,255,.04);
-      border-radius: calc(var(--radius) + 6px);
-      padding:22px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-    .enq-box p{margin:8px 0 0; color:rgba(255,255,255,.75); line-height:1.7}
-    .enq-actions{display:flex; gap:10px; flex-wrap:wrap}
-    .btn-dark-outline{
-      border:1px solid var(--line-dark);
-      background:transparent;
-      color:var(--white);
-      box-shadow:none;
-    }
-    footer{
-      padding:22px 0 38px;
-      color:rgba(255,255,255,.65);
-      font-size:13px;
-    }
-    .goldline{color:rgba(201,163,91,.95)}
+.hero p{
+font-size:20px;
+max-width:700px;
+margin:auto;
+line-height:1.6;
+}
 
-    /* Sticky WhatsApp */
-    .wa-fab{
-      position:fixed;
-      right:18px;
-      bottom:18px;
-      z-index:100;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      padding:12px 14px;
-      border-radius:999px;
-      background:linear-gradient(180deg, var(--gold), #a98243);
-      color:#0f1014;
-      font-weight:800;
-      border:none;
-      box-shadow:0 18px 55px rgba(0,0,0,.25);
-      transition: transform .12s ease;
-    }
-    .wa-fab:hover{transform:translateY(-2px)}
-    .wa-icon{
-      width:18px; height:18px; border-radius:5px;
-      background:#0f1014;
-      opacity:.9;
-      display:inline-block;
-      position:relative;
-    }
-    .wa-icon:before{
-      content:"";
-      position:absolute; inset:4px 5px 4px 5px;
-      border:2px solid var(--gold);
-      border-top:none; border-left:none;
-      transform: rotate(45deg);
-      opacity:.9;
-    }
+/* SECTIONS */
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr}
-      .cards{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
-      nav{display:none}
-    }
-  </style>
+.section{
+padding:60px 20px;
+max-width:1000px;
+margin:auto;
+}
+
+.section h2{
+text-align:center;
+margin-bottom:30px;
+font-size:30px;
+}
+
+ul{
+line-height:1.9;
+font-size:18px;
+max-width:700px;
+margin:auto;
+}
+
+.about{
+text-align:center;
+line-height:1.7;
+max-width:700px;
+margin:auto;
+}
+
+/* FOOTER */
+
+.footer{
+background:#111;
+color:white;
+text-align:center;
+padding:40px 20px;
+}
+
+/* WHATSAPP BUTTON */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#c9a35b;
+color:black;
+padding:15px 22px;
+border-radius:40px;
+font-weight:bold;
+text-decoration:none;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+</style>
 </head>
 
 <body>
-  <!-- One-click WhatsApp link with prefilled message -->
-  <!-- NOTE: SA number: 067... becomes 2767... (remove the 0 and add 27) -->
-  <a class="wa-fab"
-     href="https://wa.me/27679741325?text=Hi%20Spark%20Projects%2C%20I%20need%20assistance%20with%20a%20venue%20booking.%20Please%20share%20availability%20and%20requirements."
-     target="_blank" rel="noopener">
-    <span class="wa-icon" aria-hidden="true"></span>
-    WhatsApp Now
-  </a>
 
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <img src="logo.png" alt="Spark Projects logo">
-        <div>
-          <div class="name">SPARK PROJECTS</div>
-          <div class="tag">Event Solutions • Venues • Suppliers</div>
-        </div>
-      </div>
+<!-- HERO -->
+<div class="hero">
+<div class="hero-content">
 
-      <nav aria-label="Primary">
-        <a href="#what-we-do">What We Do</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#coverage">Coverage</a>
-        <a href="#about">About</a>
-        <a href="#enquiries">Enquiries</a>
-      </nav>
+<img src="logo.png" class="logo">
 
-      <a class="btn btn-gold"
-         href="https://wa.me/27679741325?text=Hi%20Spark%20Projects%2C%20I%20need%20assistance%20with%20a%20venue%20booking.%20Please%20share%20availability%20and%20requirements."
-         target="_blank" rel="noopener">
-        WhatsApp Now
-      </a>
-    </div>
-  </header>
+<h1>SPARK PROJECTS</h1>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-wrap">
-        <span class="kicker">Venue Bookings • Space Sourcing • Event Support</span>
-        <h1>Venue Bookings & Event Space Solutions</h1>
-        <p class="lead">
-          We secure suitable venues and activation spaces across South Africa for corporate events, brand activations,
-          and private functions — handled with clear coordination and professional standards.
-        </p>
+<p>
+Professional Venue Bookings & Activation Space Solutions across South Africa
+</p>
 
-        <div class="hero-actions">
-          <a class="btn btn-gold"
-             href="https://wa.me/27679741325?text=Hi%20Spark%20Projects%2C%20I%20need%20assistance%20with%20a%20venue%20booking.%20Please%20share%20availability%20and%20requirements."
-             target="_blank" rel="noopener">WhatsApp Now</a>
-          <a class="btn btn-ghost-dark" href="mailto:Leanoholdings@outlook.com">Email</a>
-        </div>
+</div>
+</div>
 
-        <div class="hero-grid">
-          <div class="trust-card">
-            <h3>What clients can expect</h3>
+<!-- WHAT WE BOOK -->
+<div class="section">
+<h2>What We Book</h2>
 
-            <div class="pill">
-              <div class="dot"></div>
-              <div><b>Nationwide support</b><span>We assist across South Africa, based on venue availability and requirements.</span></div>
-            </div>
+<ul>
+<li>Mall activations & pop-up store activations</li>
+<li>Pop-up spaces & short-term leasing (where applicable)</li>
+<li>Conferences & corporate events</li>
+<li>Product launches</li>
+<li>Expos & exhibitions</li>
+<li>Private gatherings & brand experiences</li>
+</ul>
 
-            <div class="pill">
-              <div class="dot"></div>
-              <div><b>Short-notice assistance</b><span>Where possible, we support urgent requests with efficient coordination.</span></div>
-            </div>
+</div>
 
-            <div class="pill">
-              <div class="dot"></div>
-              <div><b>Professional coordination</b><span>Clear communication, organised steps, and confirmed booking details.</span></div>
-            </div>
-          </div>
+<!-- ADDITIONAL SUPPORT -->
+<div class="section">
+<h2>Additional Support</h2>
 
-          <div class="trust-card">
-            <h3>Quick enquiry details</h3>
-            <div class="pill">
-              <div class="dot"></div>
-              <div><b>WhatsApp (preferred)</b><span>067 974 1325</span></div>
-            </div>
-            <div class="pill">
-              <div class="dot"></div>
-              <div><b>Email</b><span>Leanoholdings@outlook.com</span></div>
-            </div>
-            <div class="pill">
-              <div class="dot"></div>
-              <div><b>Coverage</b><span>South Africa</span></div>
-            </div>
-          </div>
-        </div>
+<p class="about">
+We can also source or supply selected event equipment through trusted suppliers
+to support your venue setup and event requirements where needed.
+</p>
 
-      </div>
-    </section>
+</div>
 
-    <section id="what-we-do">
-      <div class="container">
-        <h2 class="section-title">What We Do</h2>
-        <p class="section-sub">
-          Practical support for brands, agencies, and private clients — focused on venue bookings, suitable spaces, and smooth coordination.
-        </p>
+<!-- ABOUT -->
+<div class="section">
+<h2>About Spark Projects</h2>
 
-        <div class="cards">
-          <div class="card featured">
-            <h3>Venue Bookings</h3>
-            <p>We manage the booking journey from enquiry to confirmation, ensuring requirements and final details are handled professionally.</p>
-            <ul>
-              <li>• Availability checks & confirmations</li>
-              <li>• Booking requests, follow-ups & securing dates</li>
-              <li>• Requirements coordination (capacity, timing, layout needs)</li>
-              <li>• Client–venue communication</li>
-              <li>• Final booking confirmation & shared details</li>
-            </ul>
-          </div>
+<p class="about">
+Spark Projects supports brands, agencies, and private clients with venue bookings,
+activation space sourcing, and event coordination across South Africa.  
+Our focus is professional service, clear communication, and reliable support.
+</p>
 
-          <div class="card">
-            <h3>Space Sourcing</h3>
-            <p>We shortlist suitable venues and activation spaces based on your brief, location, and budget — across South Africa.</p>
-          </div>
+</div>
 
-          <div class="card">
-            <h3>Equipment & Supplier Support (Optional)</h3>
-            <p>We can source or supply selected event equipment through our trusted supplier network to support setup and event requirements.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- FOOTER -->
+<div class="footer">
+Spark Projects • Event Solutions • Venues • Suppliers  
+<br><br>
+WhatsApp: 067 974 1325  
+<br>
+Email: Leanoholdings@outlook.com
+</div>
 
-    <section id="how-it-works">
-      <div class="container">
-        <h2 class="section-title">How It Works</h2>
-        <p class="section-sub">A clear, professional process designed to confirm availability, secure the booking, and share final details.</p>
+<!-- WHATSAPP BUTTON -->
+<a class="whatsapp"
+href="https://wa.me/27679741325?text=Hi%20Spark%20Projects%20I%20need%20help%20with%20a%20venue%20booking"
+target="_blank">
+WhatsApp Us
+</a>
 
-        <div class="grid-2">
-          <div class="tile"><div class="dot"></div><div><b>1) Share your brief</b><span>Date, area, guest count, and budget.</span></div></div>
-          <div class="tile"><div class="dot"></div><div><b>2) Options & availability</b><span>We confirm suitable spaces and present options.</span></div></div>
-          <div class="tile"><div class="dot"></div><div><b>3) Secure the booking</b><span>Requests, follow-ups, and confirmation steps handled efficiently.</span></div></div>
-          <div class="tile"><div class="dot"></div><div><b>4) Optional coordination</b><span>Supplier and selected equipment support where required.</span></div></div>
-          <div class="tile"><div class="dot"></div><div><b>5) Final confirmation</b><span>Booking details and requirements shared clearly.</span></div></div>
-          <div class="tile"><div class="dot"></div><div><b>Professional support</b><span>Clear communication and organised coordination throughout.</span></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="coverage">
-      <div class="container">
-        <h2 class="section-title">Coverage</h2>
-        <p class="section-sub">
-          We assist clients across <b>South Africa</b>. Service delivery is based on venue availability, booking timelines, and confirmed requirements.
-        </p>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title">About</h2>
-        <p class="section-sub">
-          Spark Projects supports brands, agencies, and private clients with venue bookings and event space coordination — focused on efficiency, clear communication, and professional execution.
-        </p>
-      </div>
-    </section>
-
-    <section class="enquiries" id="enquiries">
-      <div class="container" style="padding:54px 0 18px;">
-        <div class="enq-box">
-          <div>
-            <h2 class="section-title" style="margin:0; color:#fff;">Enquiries</h2>
-            <p>Send your venue requirements via WhatsApp (preferred) or email. We respond promptly and professionally.</p>
-          </div>
-          <div class="enq-actions">
-            <a class="btn btn-gold"
-               href="https://wa.me/27679741325?text=Hi%20Spark%20Projects%2C%20I%20need%20assistance%20with%20a%20venue%20booking.%20Please%20share%20availability%20and%20requirements."
-               target="_blank" rel="noopener">WhatsApp Now</a>
-            <a class="btn btn-dark-outline" href="mailto:Leanoholdings@outlook.com">Leanoholdings@outlook.com</a>
-          </div>
-        </div>
-
-        <footer>
-          <div class="container" style="width:100%; padding:0;">
-            <div style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; border-top:1px solid var(--line-dark); padding-top:16px;">
-              <div>© <span id="y"></span> Spark Projects. All rights reserved.</div>
-              <div class="goldline">Event Solutions • Venues • Suppliers</div>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
