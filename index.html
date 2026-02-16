@@ -282,32 +282,6 @@
       display:block;
     }
 
-    /* White image slide with fade */
-    .image-slide{
-      background:#ffffff;
-    }
-    .image-frame{
-      border:1px solid var(--line);
-      border-radius: calc(var(--radius) + 6px);
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      background:#fff;
-
-      opacity:0;
-      transform: translateY(10px);
-      transition: opacity 900ms ease, transform 900ms ease;
-      will-change: opacity, transform;
-    }
-    .image-frame.is-visible{
-      opacity:1;
-      transform: translateY(0);
-    }
-    .image-frame img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
     /* Enquiries */
     .enquiries{
       background: linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
@@ -375,27 +349,27 @@
       opacity:.9;
     }
 
-    /* ===== NEW: COLLAGE REFLECTION ONLY FOR "WHAT WE DO" ===== */
+    /* ===== Collage reflection ONLY for "What We Do" ===== */
     .with-collage{
       position:relative;
       overflow:hidden;
       background:#fff;
     }
     .with-collage::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:url("collage.jpg") center/cover no-repeat;
-    opacity:0.18;      /* ↑ stronger */
-    filter:blur(1px);  /* ↓ less blur */
-    transform:scale(1.03);
-    pointer-events:none;
-}
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url("collage.jpg") center/cover no-repeat;
+      opacity:0.18;
+      filter:blur(1px);
+      transform:scale(1.03);
+      pointer-events:none;
+    }
     .with-collage > .container{
       position:relative;
       z-index:1;
     }
-    /* ======================================================= */
+    /* =================================================== */
 
     /* Responsive */
     @media (max-width: 980px){
@@ -430,7 +404,6 @@
       <nav aria-label="Primary">
         <a href="#what-we-do">What We Do</a>
         <a href="#bookings">Bookings</a>
-        <a href="#activation">Activation</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#coverage">Coverage</a>
         <a href="#about">About</a>
@@ -502,7 +475,6 @@
       </div>
     </section>
 
-    <!-- ONLY CHANGE HERE: added class="with-collage" -->
     <section id="what-we-do" class="with-collage">
       <div class="container">
         <h2 class="section-title">What We Do</h2>
@@ -550,18 +522,6 @@
           <div class="booking-item"><div class="dot"></div><div><b>Product launches</b><span>Venues suited for brand moments, guests, and media-ready setups.</span></div></div>
           <div class="booking-item"><div class="dot"></div><div><b>Expos & exhibitions</b><span>Exhibition venues and spaces aligned to your event objectives.</span></div></div>
           <div class="booking-item"><div class="dot"></div><div><b>Private gatherings & brand experiences</b><span>Spaces for intimate events, celebrations, and curated experiences.</span></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- White background activation image slide (fade in) -->
-    <section class="image-slide" id="activation">
-      <div class="container">
-        <h2 class="section-title">Activation</h2>
-        <p class="section-sub">A look at activation-style setups and brand-facing spaces.</p>
-
-        <div class="image-frame" id="activationFrame">
-          <img src="activation.jpg" alt="Activation setup">
         </div>
       </div>
     </section>
@@ -653,36 +613,12 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Fade-in for activation image slide
-    (function(){
-      var frame = document.getElementById("activationFrame");
-      if(!frame) return;
-
-      var obs = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if(entry.isIntersecting){
-            frame.classList.add("is-visible");
-            obs.disconnect();
-          }
-        });
-      }, { threshold: 0.18 });
-
-      obs.observe(frame);
-    })();
-
     // Fade-in effect for How It Works step images
     (function(){
       var items = document.querySelectorAll(".step-media");
       if(!items.length) return;
 
       var obs = new IntersectionObserver(function(entries){
-        entries.forEach(functionentry){
-          // (typo guard in old browsers)
-        });
-      });
-
-      // Recreate observer correctly (safe)
-      obs = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
           if(entry.isIntersecting){
             entry.target.classList.add("is-visible");
@@ -696,4 +632,3 @@
   </script>
 </body>
 </html>
-
