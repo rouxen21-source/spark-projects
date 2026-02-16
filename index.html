@@ -255,64 +255,31 @@
     .tile b{display:block; font-size:14px}
     .tile span{display:block; color:var(--muted); font-size:13px; line-height:1.7}
 
-    /* NEW: How It Works step images + effect */
-    .step-media{
+    /* FIXED: Replace broken step images with premium step badges */
+    .step-badge{
       width:56px;
       height:56px;
       border-radius:14px;
-      border:1px solid var(--line);
-      background:#fff;
+      border:1px solid rgba(201,163,91,.35);
+      background:linear-gradient(180deg, rgba(201,163,91,.22), rgba(201,163,91,.10));
       box-shadow:0 10px 30px rgba(0,0,0,.06);
-      overflow:hidden;
-      flex:0 0 auto;
+      color:#0f1014;
+      font-weight:800;
+      font-size:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
 
       opacity:0;
       transform: translateY(10px);
       transition: opacity 700ms ease, transform 700ms ease;
       will-change: opacity, transform;
+      flex:0 0 auto;
     }
-    .step-media.is-visible{
+    .step-badge.is-visible{
       opacity:1;
       transform: translateY(0);
     }
-    .step-media img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    /* Enquiries */
-    .enquiries{
-      background: linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
-      color:var(--white);
-      border-top:1px solid var(--line-dark);
-    }
-    .enq-box{
-      border:1px solid var(--line-dark);
-      background: rgba(255,255,255,.04);
-      border-radius: calc(var(--radius) + 6px);
-      padding:22px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-    .enq-box p{margin:8px 0 0; color:rgba(255,255,255,.75); line-height:1.7}
-    .enq-actions{display:flex; gap:10px; flex-wrap:wrap}
-    .btn-dark-outline{
-      border:1px solid var(--line-dark);
-      background:transparent;
-      color:var(--white);
-      box-shadow:none;
-    }
-    footer{
-      padding:22px 0 38px;
-      color:rgba(255,255,255,.65);
-      font-size:13px;
-    }
-    .goldline{color:rgba(201,163,91,.95)}
 
     /* Sticky WhatsApp */
     .wa-fab{
@@ -370,6 +337,38 @@
       z-index:1;
     }
     /* =================================================== */
+
+    /* Enquiries */
+    .enquiries{
+      background: linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
+      color:var(--white);
+      border-top:1px solid var(--line-dark);
+    }
+    .enq-box{
+      border:1px solid var(--line-dark);
+      background: rgba(255,255,255,.04);
+      border-radius: calc(var(--radius) + 6px);
+      padding:22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .enq-box p{margin:8px 0 0; color:rgba(255,255,255,.75); line-height:1.7}
+    .enq-actions{display:flex; gap:10px; flex-wrap:wrap}
+    .btn-dark-outline{
+      border:1px solid var(--line-dark);
+      background:transparent;
+      color:var(--white);
+      box-shadow:none;
+    }
+    footer{
+      padding:22px 0 38px;
+      color:rgba(255,255,255,.65);
+      font-size:13px;
+    }
+    .goldline{color:rgba(201,163,91,.95)}
 
     /* Responsive */
     @media (max-width: 980px){
@@ -533,32 +532,32 @@
 
         <div class="grid-2">
           <div class="tile">
-            <div class="step-media"><img src="step1.png" alt="Step 1"></div>
-            <div><b>1) Share your brief</b><span>Date, area, guest count, and budget.</span></div>
+            <div class="step-badge">1</div>
+            <div><b>Share your brief</b><span>Date, area, guest count, and budget.</span></div>
           </div>
 
           <div class="tile">
-            <div class="step-media"><img src="step2.png" alt="Step 2"></div>
-            <div><b>2) Options & availability</b><span>We confirm suitable spaces and present options.</span></div>
+            <div class="step-badge">2</div>
+            <div><b>Options & availability</b><span>We confirm suitable spaces and present options.</span></div>
           </div>
 
           <div class="tile">
-            <div class="step-media"><img src="step3.png" alt="Step 3"></div>
-            <div><b>3) Secure the booking</b><span>Requests, follow-ups, and confirmation steps handled efficiently.</span></div>
+            <div class="step-badge">3</div>
+            <div><b>Secure the booking</b><span>Requests, follow-ups, and confirmation steps handled efficiently.</span></div>
           </div>
 
           <div class="tile">
-            <div class="step-media"><img src="step4.png" alt="Step 4"></div>
-            <div><b>4) Optional coordination</b><span>Supplier and selected event equipment support where required.</span></div>
+            <div class="step-badge">4</div>
+            <div><b>Optional coordination</b><span>Supplier and selected event equipment support where required.</span></div>
           </div>
 
           <div class="tile">
-            <div class="step-media"><img src="step5.png" alt="Step 5"></div>
-            <div><b>5) Final confirmation</b><span>Booking details and requirements shared clearly.</span></div>
+            <div class="step-badge">5</div>
+            <div><b>Final confirmation</b><span>Booking details and requirements shared clearly.</span></div>
           </div>
 
           <div class="tile">
-            <div class="step-media"><img src="step5.png" alt="Support"></div>
+            <div class="step-badge">★</div>
             <div><b>Professional support</b><span>Clear communication and organised coordination throughout.</span></div>
           </div>
         </div>
@@ -613,9 +612,9 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Fade-in effect for How It Works step images
+    // Fade-in effect for How It Works step badges (replaces broken images)
     (function(){
-      var items = document.querySelectorAll(".step-media");
+      var items = document.querySelectorAll(".step-badge");
       if(!items.length) return;
 
       var obs = new IntersectionObserver(function(entries){
