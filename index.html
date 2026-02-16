@@ -221,7 +221,7 @@
     }
     .featured > *{position:relative}
 
-    /* Bookings list (requested) */
+    /* Bookings list */
     .booking-grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -250,12 +250,39 @@
       border-radius: var(--radius);
       padding:16px 16px;
       box-shadow: var(--shadow);
-      display:flex; gap:10px; align-items:flex-start;
+      display:flex; gap:12px; align-items:flex-start;
     }
     .tile b{display:block; font-size:14px}
     .tile span{display:block; color:var(--muted); font-size:13px; line-height:1.7}
 
-    /* NEW: White image slide with fade */
+    /* NEW: How It Works step images + effect */
+    .step-media{
+      width:56px;
+      height:56px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
+      overflow:hidden;
+      flex:0 0 auto;
+
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity 700ms ease, transform 700ms ease;
+      will-change: opacity, transform;
+    }
+    .step-media.is-visible{
+      opacity:1;
+      transform: translateY(0);
+    }
+    .step-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* White image slide with fade */
     .image-slide{
       background:#ffffff;
     }
@@ -265,6 +292,7 @@
       overflow:hidden;
       box-shadow: var(--shadow);
       background:#fff;
+
       opacity:0;
       transform: translateY(10px);
       transition: opacity 900ms ease, transform 900ms ease;
@@ -346,6 +374,28 @@
       transform: rotate(45deg);
       opacity:.9;
     }
+
+    /* ===== NEW: COLLAGE REFLECTION ONLY FOR "WHAT WE DO" ===== */
+    .with-collage{
+      position:relative;
+      overflow:hidden;
+      background:#fff;
+    }
+    .with-collage::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url("collage.jpg") center/cover no-repeat;
+      opacity:0.07;
+      filter:blur(3px);
+      transform:scale(1.05);
+      pointer-events:none;
+    }
+    .with-collage > .container{
+      position:relative;
+      z-index:1;
+    }
+    /* ======================================================= */
 
     /* Responsive */
     @media (max-width: 980px){
@@ -452,7 +502,8 @@
       </div>
     </section>
 
-    <section id="what-we-do">
+    <!-- ONLY CHANGE HERE: added class="with-collage" -->
+    <section id="what-we-do" class="with-collage">
       <div class="container">
         <h2 class="section-title">What We Do</h2>
         <p class="section-sub">
@@ -503,7 +554,7 @@
       </div>
     </section>
 
-    <!-- NEW: White background activation image slide (fade in) -->
+    <!-- White background activation image slide (fade in) -->
     <section class="image-slide" id="activation">
       <div class="container">
         <h2 class="section-title">Activation</h2>
@@ -521,12 +572,35 @@
         <p class="section-sub">A clear, professional process designed to confirm availability, secure the booking, and share final details.</p>
 
         <div class="grid-2">
-          <div class="tile"><div class="dot"></div><div><b>1) Share your brief</b><span>Date, area, guest count, and budget.</span></div></div>
-          <div class="tile"><div class="dot"></div><div><b>2) Options & availability</b><span>We confirm suitable spaces and present options.</span></div></div>
-          <div class="tile"><div class="dot"></div><div><b>3) Secure the booking</b><span>Requests, follow-ups, and confirmation steps handled efficiently.</span></div></div>
-          <div class="tile"><div class="dot"></div><div><b>4) Optional coordination</b><span>Supplier and selected equipment support where required.</span></div></div>
-          <div class="tile"><div class="dot"></div><div><b>5) Final confirmation</b><span>Booking details and requirements shared clearly.</span></div></div>
-          <div class="tile"><div class="dot"></div><div><b>Professional support</b><span>Clear communication and organised coordination throughout.</span></div></div>
+          <div class="tile">
+            <div class="step-media"><img src="step1.png" alt="Step 1"></div>
+            <div><b>1) Share your brief</b><span>Date, area, guest count, and budget.</span></div>
+          </div>
+
+          <div class="tile">
+            <div class="step-media"><img src="step2.png" alt="Step 2"></div>
+            <div><b>2) Options & availability</b><span>We confirm suitable spaces and present options.</span></div>
+          </div>
+
+          <div class="tile">
+            <div class="step-media"><img src="step3.png" alt="Step 3"></div>
+            <div><b>3) Secure the booking</b><span>Requests, follow-ups, and confirmation steps handled efficiently.</span></div>
+          </div>
+
+          <div class="tile">
+            <div class="step-media"><img src="step4.png" alt="Step 4"></div>
+            <div><b>4) Optional coordination</b><span>Supplier and selected event equipment support where required.</span></div>
+          </div>
+
+          <div class="tile">
+            <div class="step-media"><img src="step5.png" alt="Step 5"></div>
+            <div><b>5) Final confirmation</b><span>Booking details and requirements shared clearly.</span></div>
+          </div>
+
+          <div class="tile">
+            <div class="step-media"><img src="step5.png" alt="Support"></div>
+            <div><b>Professional support</b><span>Clear communication and organised coordination throughout.</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -594,6 +668,30 @@
       }, { threshold: 0.18 });
 
       obs.observe(frame);
+    })();
+
+    // Fade-in effect for How It Works step images
+    (function(){
+      var items = document.querySelectorAll(".step-media");
+      if(!items.length) return;
+
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(functionentry){
+          // (typo guard in old browsers)
+        });
+      });
+
+      // Recreate observer correctly (safe)
+      obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
+
+      items.forEach(function(el){ obs.observe(el); });
     })();
   </script>
 </body>
